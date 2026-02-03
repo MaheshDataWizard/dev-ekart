@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, from } from 'rxjs';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-practice',
@@ -12,9 +12,9 @@ export class Practice {
   data: any[] = [];
   ARRAY1 = [1, 2, 3, 4, 5];
   ARRAY2 = [6, 7, 8, 9, 10];
-  // myObservable = new Observable();
+  // myObservable = new Observable();                                                                                                                                               
 
-  myObservable = of(this.ARRAY1, this.ARRAY2, true, "Hello", 100, 200.5, { name: "John", age: 30 }, [1, 2, 3, 4, 5]);
+  myObservable = from(this.ARRAY1);
 
   getData() {
     this.myObservable.subscribe({
