@@ -26,16 +26,19 @@ export class Practice {
   })
 
   getData() {
-    this.myObservable.subscribe((value: any) => {
-      this.data.push(value);
-    },
-      (error: any) => {
+
+    this.myObservable.subscribe({
+      next: (value: any) => {
+        this.data.push(value)
+      },
+      error(error: any) {
         console.log(error);
         alert(error);
       },
-      () => {
+      complete() {
         console.log("Completed");
-      })
+      }
+    })
   }
 
 
