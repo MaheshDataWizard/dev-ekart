@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-practice',
@@ -10,23 +10,13 @@ import { CommonModule } from '@angular/common';
 export class Practice {
 
   data: any[] = [];
+  ARRAY1 = [1, 2, 3, 4, 5];
+  ARRAY2 = [6, 7, 8, 9, 10];
+  // myObservable = new Observable();
 
-  myObservable = new Observable((sub) => {
-    setTimeout(() => sub.next(1), 1000);
-    setTimeout(() => sub.next(2), 2000);
-    setTimeout(() => sub.next(3), 3000);
-    setTimeout(() => sub.error(new Error("Something went wrong")),
-      4000);
-    setTimeout(() => sub.next(5), 5000);
-    setTimeout(() => sub.next(6), 6000);
-    setTimeout(() => sub.next(7), 7000);
-    setTimeout(() => sub.complete(), 8000);
-    setTimeout(() => sub.next(9), 9000);
-    setTimeout(() => sub.next(10), 10000);
-  })
+  myObservable = of(this.ARRAY1, this.ARRAY2, true, "Hello", 100, 200.5, { name: "John", age: 30 }, [1, 2, 3, 4, 5]);
 
   getData() {
-
     this.myObservable.subscribe({
       next: (value: any) => {
         this.data.push(value)
@@ -37,6 +27,8 @@ export class Practice {
       },
       complete() {
         console.log("Completed");
+
+        alert("Completed");
       }
     })
   }
